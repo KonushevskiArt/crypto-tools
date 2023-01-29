@@ -2,36 +2,20 @@ import { createSlice } from '@reduxjs/toolkit';
 import { v4 as uuidv4 } from 'uuid';
 
 const initialState = {
-  currencies: {
-    "BTC": [
-      {
-        date: '01.02.03',
-        price: '23',
-        quantity: '0.2',
-        id: uuidv4(),
-      },
-      {
-        date: '01.02.03',
-        price: '23',
-        quantity: '0.2',
-        id: uuidv4(),
-      }
-    ]
-  }
+  currencies: { }
 }
 
 const storage = JSON.parse(localStorage.getItem('currencies'));
-console.log(storage)
 
 export const currenciesSlice = createSlice({
   name: 'currencies',
-  initialState: storage === null ? initialState : (storage),
+  initialState: storage === null ? initialState : ({ currencies: storage }),
   reducers: {
     addCurrency: (state, action) => {
       const { name } = action.payload;
-      state[name] = []
-
-      const newState = JSON.stringify({ ...state });
+      state.currencies[name] = []
+      console.log()
+      const newState = JSON.stringify({ ...state.currencies });
 
       localStorage.setItem('currencies', newState);
     },
@@ -39,7 +23,7 @@ export const currenciesSlice = createSlice({
       const { name, price, quantity } = action.payload;
       const currentDate = new Date().toLocaleDateString();
 
-      state[name].push(
+      state.currencies[name].push(
         {
           date: currentDate,
           price: price,
@@ -47,15 +31,14 @@ export const currenciesSlice = createSlice({
           id: uuidv4(),
         }
       );
-      const newState = JSON.stringify({ ...state });
+      const newState = JSON.stringify({ ...state.currencies });
 
       localStorage.setItem('currencies', newState);
-      console.log(state);
     },
     removePurchase: (state, action) => {
       const {name, id} = action.payload;
 
-      const purchaseList = state[name];
+      const purchaseList = state.currencies[name];
 
       const idx = purchaseList.findIndex(
         (purchase) => id === purchase.id 
@@ -63,16 +46,16 @@ export const currenciesSlice = createSlice({
 
       const newPurchaseList = [...purchaseList.slice(0, idx), ...purchaseList.slice(idx + 1)];
 
-      state[name] = newPurchaseList;
+      state.currencies[name] = newPurchaseList;
 
-      const newState = JSON.stringify({ ...state });
+      const newState = JSON.stringify({ ...state.currencies });
 
       localStorage.setItem('currencies', newState);
     },
     removeCurrency: (state, action) => {
-      delete state[action.payload.name];
+      delete state.currencies[action.payload.name];
 
-      const newState = JSON.stringify({ ...state });
+      const newState = JSON.stringify({ ...state.currencies });
 
       localStorage.setItem('currencies', newState);
     },

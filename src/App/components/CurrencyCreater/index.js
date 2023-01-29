@@ -12,7 +12,6 @@ const CurrencyCreater = () => {
   const dispatch = useDispatch()
 
   const onSubmit = ({ name }) => {
-    console.log(name);
     dispatch(addCurrency({name}));
     reset();
   };

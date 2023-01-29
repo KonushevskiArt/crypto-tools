@@ -15,7 +15,7 @@ import Box from '@mui/material/Box';
 
 const CurrencyList = () => {
   const dispatch = useDispatch();
-  const currencies = useSelector((state) => state.currencies)
+  const currencies = useSelector((state) => state.currencies.currencies)
 
   const currenciesArr = Object.keys(currencies);
 

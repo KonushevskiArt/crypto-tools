@@ -12,7 +12,6 @@ const PurchaseCreater = ({ name }) => {
   const dispatch = useDispatch()
 
   const onSubmit = ({ price, quantity }) => {
-    console.log(name, price, quantity)
     dispatch(addPurchase({name, price, quantity}));
     reset();
   };

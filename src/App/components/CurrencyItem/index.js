@@ -26,7 +26,9 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 const CurrencyItem = ({ name }) => {
   const dispatch = useDispatch()
 
-  const currencyData = useSelector((state) => state.currencies[name]);
+  const currencyData = useSelector((state) => {
+    return state.currencies.currencies[name]
+  });
 
   const handleRemovePurchase = (e, id) => {
     e.preventDefault();
@@ -45,30 +47,32 @@ const CurrencyItem = ({ name }) => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {currencyData.map(({date, price, quantity, id}) => (
-            <StyledTableRow
-              key={id}
-              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-            >
-              <TableCell component="th" scope="row">{date}</TableCell>
-              <TableCell align="center">{price}</TableCell>
-              <TableCell align="center">{quantity}</TableCell>
-              <TableCell align="center">{parseFloat((price * quantity).toFixed(4))}</TableCell>
-              
-              <TableCell align="center">
-                <Button 
-                  variant="outlined" 
-                  endIcon={<DeleteIcon />}
-                  onClick={(e) => handleRemovePurchase(e, id)} 
-                  color="error"
-                  size="small"
-                > 
-                  Delete
-                </Button>
-              </TableCell>
-              
-            </StyledTableRow>
-          ))}
+          {currencyData ? 
+            currencyData.map(({date, price, quantity, id}) => (
+              <StyledTableRow
+                key={id}
+                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+              >
+                <TableCell component="th" scope="row">{date}</TableCell>
+                <TableCell align="center">{price}</TableCell>
+                <TableCell align="center">{quantity}</TableCell>
+                <TableCell align="center">{parseFloat((price * quantity).toFixed(4))}</TableCell>
+                
+                <TableCell align="center">
+                  <Button 
+                    variant="outlined" 
+                    endIcon={<DeleteIcon />}
+                    onClick={(e) => handleRemovePurchase(e, id)} 
+                    color="error"
+                    size="small"
+                  > 
+                    Delete
+                  </Button>
+                </TableCell>
+                
+              </StyledTableRow>
+            )) : null
+          } 
         </TableBody>
       </Table>
       <PurchaseCreater name={name} />
