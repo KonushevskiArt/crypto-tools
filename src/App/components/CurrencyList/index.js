@@ -9,25 +9,33 @@ import { useSelector } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Button from '@mui/material/Button';
-import { removeCurrency } from '../../currencySlice';
+import { removeCurrency, toggleAccardion } from '../../currencySlice';
 import { useDispatch } from "react-redux";
 import Box from '@mui/material/Box';
 
 const CurrencyList = () => {
   const dispatch = useDispatch();
   const currencies = useSelector((state) => state.currencies.currencies)
+  const opendAccordions = useSelector((state) => state.currencies.opendAccordions) || {}
 
   const currenciesArr = Object.keys(currencies);
 
-  const handleRemoveCurrency = (e, name) => {
-    e.preventDefault();
+  const handleRemoveCurrency = (name) => {
     dispatch(removeCurrency({name}));
+  }
+
+  const handleAccordionChange = (name) => {
+    dispatch(toggleAccardion({name}))
   }
 
   return (
     <div>
       {currenciesArr.map((currencyName) => 
-        <Accordion key={uuidv4()} sx={{ background: '#fff7f7'}}>
+        <Accordion 
+          expanded={opendAccordions[currencyName] || false} 
+          key={currencyName + Date.now()} 
+          sx={{ background: '#fff7f7'}} 
+          onChange={() => handleAccordionChange(currencyName)}>
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
             aria-controls="panel1a-content"

@@ -13,6 +13,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import Button from '@mui/material/Button';
 import { removePurchase } from '../../currencySlice';
 import { useDispatch } from "react-redux";
+import { TableFooter } from '@mui/material';
 
 const StyledTableRow = styled(TableRow)(({ theme }) => ({
   '&:nth-of-type(odd)': {
@@ -29,6 +30,22 @@ const CurrencyItem = ({ name }) => {
   const currencyData = useSelector((state) => {
     return state.currencies.currencies[name]
   });
+
+  const averagePrice = () => {
+    const sum = currencyData.reduce((acc, currency) => (acc + Number(currency.price)), 0);
+    return parseFloat((sum / currencyData.length).toFixed(4));
+  };
+
+  const totalQuantity = () => {
+    return currencyData.reduce((acc, currency) => (acc + Number(currency.quantity)), 0);
+  }
+
+  const totalCosts = () => {
+    const arrOfCosts = currencyData
+    .map((currency) => currency.price * currency.quantity)
+    .reduce((acc, cost) => (acc + cost), 0);
+    return parseFloat(arrOfCosts.toFixed(4));
+  }
 
   const handleRemovePurchase = (e, id) => {
     e.preventDefault();
@@ -74,6 +91,14 @@ const CurrencyItem = ({ name }) => {
             )) : null
           } 
         </TableBody>
+        <TableFooter>
+          <TableRow>
+            <TableCell>Outcome</TableCell>
+            <TableCell align="center">{averagePrice() || 0}</TableCell>
+            <TableCell align="center">{totalQuantity() || 0}</TableCell>
+            <TableCell align="center">{totalCosts() || 0}</TableCell>
+          </TableRow>
+        </TableFooter>
       </Table>
       <PurchaseCreater name={name} />
     </TableContainer>

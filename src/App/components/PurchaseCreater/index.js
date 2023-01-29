@@ -6,45 +6,67 @@ import { useDispatch } from "react-redux";
 import { addPurchase } from "../../currencySlice";
 import { useForm} from "react-hook-form";
 
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
+import dayjs from 'dayjs';
+
 const PurchaseCreater = ({ name }) => {
   const { register, reset, handleSubmit, formState: { errors } } = useForm();
 
-  const dispatch = useDispatch()
+  const [dateValue, setDateValue] = React.useState(dayjs(new Date()));
 
-  const onSubmit = ({ price, quantity }) => {
-    dispatch(addPurchase({name, price, quantity}));
-    reset();
+  const handleChange = (newValue) => {
+    setDateValue(newValue);
   };
 
+  const dispatch = useDispatch()
+
+  const onSubmit = ({ price, quantity, date }) => {
+    dispatch(addPurchase({name, price, quantity, date}));
+    reset();
+  };
+  
+  const numberValidationExp = /^[0-9]*[.,]?[0-9]+$/;
+
   return (
-    <form onSubmit={handleSubmit(onSubmit)} 
-      sx={{
-        p: "20px",
-        display: 'flex',
-        justifyContent: 'flex-start',
-        flexDirection: 'column',
-        alignItems: 'start',
-      }}
-    >
+    <form onSubmit={handleSubmit(onSubmit)} >
       <Box
         p='20px'
         sx={{
           display: 'flex',
           alignItems: 'center',
+          flexWrap: 'wrap',
         }}
       >
+        <LocalizationProvider dateAdapter={AdapterDayjs}>
+          <DateTimePicker
+            label="Date&Time picker"
+            value={dateValue}
+            onChange={handleChange}
+            
+            renderInput={(params) => (
+              <TextField 
+                size="small"
+                sx={{ marginRight: '20px' }}
+                {...params}
+                {...register("date", {
+                  required: "Required field",
+                })}
+              />
+            )}
+          />
+        </LocalizationProvider>
         <TextField 
           id="standard-basic" 
           label="Price" 
           variant="standard" 
-          sx={{
-            marginRight: '20px'
-          }}
+          sx={{ marginRight: '20px' }}
           {...register("price", {
             required: "Required field",
             min: 0.000000000001,
             pattern: {
-              value: /^[0-9]+$/,
+              value: numberValidationExp,
               message: 'Invalid value'
             }
           })}
@@ -62,7 +84,7 @@ const PurchaseCreater = ({ name }) => {
             required: "Required field",
             min: 0.000000000001,
             pattern: {
-              value: /^[0-9]+$/,
+              value: numberValidationExp,
               message: 'Invalid value'
             }
           })}
@@ -74,6 +96,9 @@ const PurchaseCreater = ({ name }) => {
           color="success" 
           type='submit'
           variant="contained"
+          sx={{
+            margin: '10px'
+          }}
         >
           Save purchase
         </Button>
