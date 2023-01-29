@@ -6,7 +6,6 @@ import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import CurrencyItem from '../CurrencyItem';
 import { useSelector } from 'react-redux';
-import { v4 as uuidv4 } from 'uuid';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Button from '@mui/material/Button';
 import { removeCurrency, toggleAccardion } from '../../currencySlice';
