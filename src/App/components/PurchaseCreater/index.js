@@ -5,29 +5,27 @@ import Button from '@mui/material/Button';
 import { useDispatch } from "react-redux";
 import { addPurchase } from "../../currencySlice";
 import { useForm} from "react-hook-form";
-
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
+import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
 import dayjs from 'dayjs';
 
 const PurchaseCreater = ({ name }) => {
   const { register, reset, handleSubmit, formState: { errors } } = useForm();
 
-  const [dateValue, setDateValue] = React.useState(dayjs(new Date()));
+  const [dateValue, setDateValue] = React.useState(dayjs((Date.now())));
 
   const handleChange = (newValue) => {
-    setDateValue(newValue);
+    const formatedDate = (Date.parse(new Date(newValue.$d)));
+    setDateValue(formatedDate);
   };
 
   const dispatch = useDispatch()
 
-  const onSubmit = ({ price, quantity, date }) => {
-    dispatch(addPurchase({name, price, quantity, date}));
+  const onSubmit = ({ price, quantity }) => {
+    dispatch(addPurchase({name, price, quantity, date: Date.parse(new Date(dateValue))}));
     reset();
   };
   
-  const numberValidationExp = /^[0-9]*[.,]?[0-9]+$/;
+  const numberValidationExp = /^[0-9]*[.]?[0-9]+$/;
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} >
@@ -39,24 +37,22 @@ const PurchaseCreater = ({ name }) => {
           flexWrap: 'wrap',
         }}
       >
-        <LocalizationProvider dateAdapter={AdapterDayjs}>
-          <DateTimePicker
-            label="Date&Time picker"
-            value={dateValue}
-            onChange={handleChange}
-            
-            renderInput={(params) => (
-              <TextField 
-                size="small"
-                sx={{ marginRight: '20px' }}
-                {...params}
-                {...register("date", {
-                  required: "Required field",
-                })}
-              />
-            )}
-          />
-        </LocalizationProvider>
+        <DesktopDatePicker
+          label="Date&Time picker"
+          inputFormat="DD/MM/YYYY"
+          value={dateValue}
+          onChange={handleChange}
+          renderInput={(params) => (
+            <TextField 
+              size="small"
+              sx={{ marginRight: '20px' }}
+              {...params}
+              {...register("date", {
+                required: "Required field",
+              })}
+            />
+          )}
+        />
         <TextField 
           id="standard-basic" 
           label="Price" 

@@ -19,9 +19,20 @@ export const currenciesSlice = createSlice({
 
       localStorage.setItem('currencies', newState);
     },
+    editCurrencyName: (state, action) => {
+      const { newName, oldName } = action.payload;
+
+      const stateCurrencie = state.currencies[oldName];
+      state.currencies[newName] = stateCurrencie;
+
+      delete state.currencies[oldName];
+
+      const newState = JSON.stringify({ ...state.currencies });
+
+      localStorage.setItem('currencies', newState);
+    },
     addPurchase: (state, action) => {
       const { name, price, quantity, date } = action.payload;
-
       state.currencies[name].push(
         {
           date: date,
@@ -69,6 +80,6 @@ export const currenciesSlice = createSlice({
   },
 })
 
-export const { addCurrency, addPurchase, removeCurrency, removePurchase, toggleAccardion } = currenciesSlice.actions
+export const { editCurrencyName, addCurrency, addPurchase, removeCurrency, removePurchase, toggleAccardion } = currenciesSlice.actions
 
 export default currenciesSlice.reducer

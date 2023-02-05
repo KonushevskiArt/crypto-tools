@@ -10,10 +10,11 @@ import { styled } from '@mui/material/styles';
 import PurchaseCreater from '../PurchaseCreater';
 import { useSelector } from 'react-redux';
 import DeleteIcon from '@mui/icons-material/Delete';
-import Button from '@mui/material/Button';
 import { removePurchase } from '../../currencySlice';
 import { useDispatch } from "react-redux";
 import { TableFooter } from '@mui/material';
+import IconButton from '@mui/material/IconButton';
+import Tooltip from '@mui/material/Tooltip';
 
 const StyledTableRow = styled(TableRow)(({ theme }) => ({
   '&:nth-of-type(odd)': {
@@ -51,6 +52,19 @@ const CurrencyItem = ({ name }) => {
     e.preventDefault();
     dispatch(removePurchase({name, id}));
   }
+
+  const purchasesComparison = (purchase1, purchase2) => {
+    const date1 = Number(purchase1.date);
+    const date2 = Number(purchase2.date);
+    // console.log(purchase1.date)
+    if (date1 < date2) {
+      return -1;
+    } 
+    return 1;
+  }
+
+  // console.log(currencyData)
+  // console.log( Array.from(currencyData).sort(purchasesComparison))
   
   return (
     <TableContainer sx={{ background: '#fff2eb'}}  component={Paper}> 
@@ -65,38 +79,51 @@ const CurrencyItem = ({ name }) => {
         </TableHead>
         <TableBody>
           {currencyData ? 
-            currencyData.map(({date, price, quantity, id}) => (
+            Array.from(currencyData).sort(purchasesComparison).map(({date, price, quantity, id}) => (
               <StyledTableRow
                 key={id}
                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
               >
-                <TableCell component="th" scope="row">{date}</TableCell>
+                {/* make view of date */}
+                <TableCell component="th" scope="row">{new Date(date).toLocaleDateString('ru-RU')}</TableCell>
                 <TableCell align="center">{price}</TableCell>
                 <TableCell align="center">{quantity}</TableCell>
                 <TableCell align="center">{parseFloat((price * quantity).toFixed(4))}</TableCell>
                 
                 <TableCell align="center">
-                  <Button 
-                    variant="outlined" 
-                    endIcon={<DeleteIcon />}
-                    onClick={(e) => handleRemovePurchase(e, id)} 
-                    color="error"
-                    size="small"
-                  > 
-                    Delete
-                  </Button>
+                  <Tooltip title="Delete">
+                    <IconButton 
+                      color="error"
+                      size="small"
+                      onClick={(e) => handleRemovePurchase(e, id)} 
+                    >
+                      <DeleteIcon />
+                    </IconButton>
+                  </Tooltip>
                 </TableCell>
                 
               </StyledTableRow>
             )) : null
           } 
         </TableBody>
-        <TableFooter>
+        <TableFooter >
           <TableRow>
-            <TableCell>Outcome</TableCell>
-            <TableCell align="center">{averagePrice() || 0}</TableCell>
-            <TableCell align="center">{totalQuantity() || 0}</TableCell>
-            <TableCell align="center">{totalCosts() || 0}</TableCell>
+            <TableCell 
+              sx={{fontSize: '1rem', fontWeight: '700', textDecoration: 'underline', color: 'rgba(0, 0, 0, 0.9)'}}>
+              Outcome
+            </TableCell>
+            <TableCell 
+              sx={{fontSize: '1rem', fontWeight: '700', textDecoration: 'underline', color: 'rgba(0, 0, 0, 0.9)'}} 
+              align="center">{averagePrice() || 0}
+            </TableCell>
+            <TableCell 
+              sx={{fontSize: '1rem', fontWeight: '700', textDecoration: 'underline', color: 'rgba(0, 0, 0, 0.9)'}} 
+              align="center">{totalQuantity() || 0}
+            </TableCell>
+            <TableCell 
+              sx={{fontSize: '1rem', fontWeight: '700', textDecoration: 'underline', color: 'rgba(0, 0, 0, 0.9)'}} 
+              align="center">{totalCosts() || 0}
+            </TableCell>
           </TableRow>
         </TableFooter>
       </Table>
