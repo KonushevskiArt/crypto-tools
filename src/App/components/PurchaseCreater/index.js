@@ -7,8 +7,11 @@ import { addPurchase } from "../../currencySlice";
 import { useForm} from "react-hook-form";
 import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
 import dayjs from 'dayjs';
+import { useTranslation } from "react-i18next";
 
 const PurchaseCreater = ({ name }) => {
+  const { t } = useTranslation();
+
   const { register, reset, handleSubmit, formState: { errors } } = useForm();
 
   const [dateValue, setDateValue] = React.useState(dayjs((Date.now())));
@@ -38,7 +41,7 @@ const PurchaseCreater = ({ name }) => {
         }}
       >
         <DesktopDatePicker
-          label="Date&Time picker"
+          label={t("Date&Time_picker")}
           inputFormat="DD/MM/YYYY"
           value={dateValue}
           onChange={handleChange}
@@ -48,22 +51,22 @@ const PurchaseCreater = ({ name }) => {
               sx={{ marginRight: '20px' }}
               {...params}
               {...register("date", {
-                required: "Required field",
+                required: t("Required_field"),
               })}
             />
           )}
         />
         <TextField 
           id="standard-basic" 
-          label="Price" 
+          label={t("Price")} 
           variant="standard" 
           sx={{ marginRight: '20px' }}
           {...register("price", {
-            required: "Required field",
+            required: t("Required_field"),
             min: 0.000000000001,
             pattern: {
               value: numberValidationExp,
-              message: 'Invalid value'
+              message: t('Invalid_value')
             }
           })}
           error={!!errors?.price}
@@ -74,14 +77,14 @@ const PurchaseCreater = ({ name }) => {
             marginRight: '20px'
           }}
           id="standard-basic" 
-          label="Quantity" 
+          label={t("Quantity")} 
           variant="standard" 
           {...register("quantity", {
-            required: "Required field",
+            required: t("Required_field"),
             min: 0.000000000001,
             pattern: {
               value: numberValidationExp,
-              message: 'Invalid value'
+              message: t('Invalid_value')
             }
           })}
           error={!!errors?.quantity}
@@ -96,7 +99,7 @@ const PurchaseCreater = ({ name }) => {
             margin: '10px'
           }}
         >
-          Save purchase
+          {t('Save_purchase')}
         </Button>
       </Box>
     </form>

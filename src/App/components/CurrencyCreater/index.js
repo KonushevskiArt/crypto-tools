@@ -5,15 +5,35 @@ import { useDispatch } from "react-redux";
 import { addCurrency } from "../../currencySlice";
 import { useForm} from "react-hook-form";
 import { TextField } from "@mui/material";
+import { useSelector } from 'react-redux';
+
+import { useTranslation } from "react-i18next";
 
 const CurrencyCreater = () => {
+  const { t } = useTranslation();
   const { register, reset, handleSubmit, formState: { errors } } = useForm();
+  const [additionalError, setEdditionalError] = React.useState(false);
+  const [additionalMessage, setEdditionalMessage] = React.useState(null);
+
+  const currencys = useSelector((state) => {
+    return state.currencies.currencies
+  });
 
   const dispatch = useDispatch()
 
+  const handleChange = () => {
+    setEdditionalError(false)
+    setEdditionalMessage(null)
+  }
+
   const onSubmit = ({ name }) => {
-    dispatch(addCurrency({name}));
-    reset();
+    if (currencys[name]) {
+      setEdditionalError(true)
+      setEdditionalMessage(t('Validation_message_currencyExisted'))
+    } else {
+      dispatch(addCurrency({name}));
+      reset();
+    }
   };
 
   return (
@@ -28,11 +48,12 @@ const CurrencyCreater = () => {
       >
         <TextField   
           id="standard-basic" 
-          label="Name" 
+          label={t("Label_name")} 
           variant="standard" 
-          {...register("name", {required: "Required field", maxLength: 20})}
-          error={!!errors?.name}
-          helperText={errors?.name ? errors.name.message : null}
+          {...register("name", {required: t("Required_field"), maxLength: 20})}
+          onChange={handleChange}
+          error={!!errors?.name || additionalError}
+          helperText={errors?.name ? errors.name.message : additionalError ? additionalMessage : null}
         />
         <Button 
           size="small" 
@@ -41,7 +62,7 @@ const CurrencyCreater = () => {
           color="success"
           sx={{ marginLeft: "20px"}} 
         >
-          Save currency
+          {t("Add_currency")}
         </Button>
       </Box>
     </form>

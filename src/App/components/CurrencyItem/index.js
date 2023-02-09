@@ -16,6 +16,8 @@ import { TableFooter } from '@mui/material';
 import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
 
+import { useTranslation } from "react-i18next";
+
 const StyledTableRow = styled(TableRow)(({ theme }) => ({
   '&:nth-of-type(odd)': {
     backgroundColor: theme.palette.action.hover,
@@ -26,6 +28,8 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 }));
 
 const CurrencyItem = ({ name }) => {
+  const { t } = useTranslation();
+
   const dispatch = useDispatch()
 
   const currencyData = useSelector((state) => {
@@ -56,25 +60,21 @@ const CurrencyItem = ({ name }) => {
   const purchasesComparison = (purchase1, purchase2) => {
     const date1 = Number(purchase1.date);
     const date2 = Number(purchase2.date);
-    // console.log(purchase1.date)
     if (date1 < date2) {
       return -1;
     } 
     return 1;
   }
 
-  // console.log(currencyData)
-  // console.log( Array.from(currencyData).sort(purchasesComparison))
-  
   return (
     <TableContainer sx={{ background: '#fff2eb'}}  component={Paper}> 
       <Table sx={{ minWidth: 650,}} aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell>Date</TableCell>
-            <TableCell align="center">Price</TableCell>
-            <TableCell align="center">Quantity</TableCell>
-            <TableCell align="center">Costs</TableCell>
+            <TableCell>{t('Date')}</TableCell>
+            <TableCell align="center">{t('Price')}</TableCell>
+            <TableCell align="center">{t('Quantity')}</TableCell>
+            <TableCell align="center">{t('Costs')}</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -110,7 +110,7 @@ const CurrencyItem = ({ name }) => {
           <TableRow>
             <TableCell 
               sx={{fontSize: '1rem', fontWeight: '700', textDecoration: 'underline', color: 'rgba(0, 0, 0, 0.9)'}}>
-              Outcome
+              {t("Outcome")}
             </TableCell>
             <TableCell 
               sx={{fontSize: '1rem', fontWeight: '700', textDecoration: 'underline', color: 'rgba(0, 0, 0, 0.9)'}} 

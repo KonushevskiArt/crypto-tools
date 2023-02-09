@@ -1,0 +1,25 @@
+{
+  "Currency_list": "Список валют",
+
+  "Required_field": "Обязательное поле",
+  "Validation_message_currencyExisted": "Валюта с таким названием уже в списке",
+  "Max_length_20_characters": "Максимальная длина 20 символов",
+
+  "Label_name": "Название",
+  "Add_currency": "Добавить валюту",
+
+  "Language": "Язык",
+  "Eng": "Англ",
+  "Ru": "Рус",
+  "Save": "Сохранить",
+  "Edit": "Редактриовать",
+
+  "Date&Time_picker": "Дата и время" ,
+  "Price": "Цена",
+  "Costs": "Расходы",
+  "Date": "Дата",
+  "Invalid_value": "Невалидное значение",
+  "Quantity": "Количество",
+  "Save_purchase": "Сохранить покупку",
+  "Outcome": "Итого" 
+}

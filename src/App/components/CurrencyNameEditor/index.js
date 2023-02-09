@@ -5,11 +5,21 @@ import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
 import { editCurrencyName } from '../../currencySlice';
 import { useDispatch } from "react-redux";
+import { useSelector } from 'react-redux';
+
+import { useTranslation } from "react-i18next";
 
 const CurrencyNameEditor = ({ currencyName }) => {
+  const { t } = useTranslation();
+  const dispatch = useDispatch()
+
+  const currencys = useSelector((state) => {
+    return state.currencies.currencies
+  });
+
   const [isEdit, setIsEdit] = React.useState(false);
   const [name, setName] = React.useState(currencyName);
-  const dispatch = useDispatch()
+  
 
   const [validationError, setValidationError] = React.useState(false);
   const [validationMessage, setValidationMessage] = React.useState(null);
@@ -26,13 +36,16 @@ const CurrencyNameEditor = ({ currencyName }) => {
     const trimmedName = name.trim();
     if (trimmedName.length > 20) {
       setValidationError(true);
-      setValidationMessage('Max length 20 characters');
+      setValidationMessage(t('Max_length_20_characters'));
     } else if (trimmedName.length < 1) {
       setValidationError(true);
-      setValidationMessage('The field is required');
+      setValidationMessage(t('Required_field'));
 
     } else if (currencyName === trimmedName) {
       setIsEdit(false);
+    } else if (currencys[trimmedName]) {
+      setValidationError(true);
+      setValidationMessage(t('Required_field'));
     } else {
       dispatch(editCurrencyName({ newName: name, oldName: currencyName }))
       setIsEdit(false);
@@ -56,7 +69,7 @@ const CurrencyNameEditor = ({ currencyName }) => {
         <TextField 
             size='small' 
             id="outlined-basic" 
-            label="Name" 
+            label={t("Label_name")} 
             variant="outlined" 
             onChange={handleChange}
             onClick={(e) => e.stopPropagation()}
@@ -71,21 +84,21 @@ const CurrencyNameEditor = ({ currencyName }) => {
             size="small"
             onClick={handleSave}
           >
-            Save
+            {t("Save")}
           </Button>
       </Box>
     </form>
   </>
   :
   <>
-    <Typography mr='40px' >{currencyName}</Typography>
+    <Typography sx={{fontSize: '24px', fontWeight: '700', color: '#404040'}} mr='40px' >{currencyName}</Typography>
     <Button 
       variant="outlined"
       size="small"
       type="button"
       onClick={handleEdit}
     >
-      Edit
+      {t("Edit")}
     </Button>
   </>
 }
