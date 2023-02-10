@@ -67,7 +67,7 @@ const CurrencyItem = ({ name }) => {
   }
 
   return (
-    <TableContainer sx={{ background: '#fff2eb'}}  component={Paper}> 
+    <TableContainer sx={{ backgroundColor: 'custom.bgSecond', }}  component={Paper}> 
       <Table sx={{ minWidth: 650,}} aria-label="simple table">
         <TableHead>
           <TableRow>
@@ -84,7 +84,6 @@ const CurrencyItem = ({ name }) => {
                 key={id}
                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
               >
-                {/* make view of date */}
                 <TableCell component="th" scope="row">{new Date(date).toLocaleDateString('ru-RU')}</TableCell>
                 <TableCell align="center">{price}</TableCell>
                 <TableCell align="center">{quantity}</TableCell>

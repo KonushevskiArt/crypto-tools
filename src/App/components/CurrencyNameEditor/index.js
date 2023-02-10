@@ -7,6 +7,8 @@ import { editCurrencyName } from '../../currencySlice';
 import { useDispatch } from "react-redux";
 import { useSelector } from 'react-redux';
 
+import Badge from '@mui/material/Badge';
+
 import { useTranslation } from "react-i18next";
 
 const CurrencyNameEditor = ({ currencyName }) => {
@@ -91,12 +93,19 @@ const CurrencyNameEditor = ({ currencyName }) => {
   </>
   :
   <>
-    <Typography sx={{fontSize: '24px', fontWeight: '700', color: '#404040'}} mr='40px' >{currencyName}</Typography>
+    <Badge badgeContent={currencys[currencyName].length} color="secondary">
+      <Typography 
+        sx={{fontSize: '24px', fontWeight: '700', color: '#404040'}} 
+      >
+        {currencyName}
+      </Typography>
+    </Badge>
     <Button 
       variant="outlined"
       size="small"
       type="button"
       onClick={handleEdit}
+      sx={{marginLeft: '40px'}}
     >
       {t("Edit")}
     </Button>
