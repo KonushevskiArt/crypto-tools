@@ -21,5 +21,15 @@
   "Invalid_value": "Невалидное значение",
   "Quantity": "Количество",
   "Save_purchase": "Сохранить покупку",
-  "Outcome": "Итого" 
+  "Outcome": "Итого",
+  
+  "Palette": "Палитра",
+  "Background": "Задний план",
+  "Foreground": "Передний план",
+  "Header": "Шапка",
+  "Primary": "Основной цвет",
+  "Success": "Успех",
+  "Error": "Ошибка",
+  "Secondary": "Дополнительный цвет"
+
 }

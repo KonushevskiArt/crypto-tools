@@ -36,7 +36,7 @@ const CurrencyList = () => {
         <Accordion 
           expanded={opendAccordions[currencyName] || false} 
           key={currencyName + Date.now()} 
-          sx={{ background: '#fff7f7'}} 
+          sx={{ backgroundColor: 'custom.foreground'}} 
           onChange={() => handleAccordionChange(currencyName)}>
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
@@ -59,7 +59,7 @@ const CurrencyList = () => {
               </Tooltip>
             </Box>
           </AccordionSummary>
-          <AccordionDetails  >
+          <AccordionDetails   >
             <CurrencyItem name={currencyName} />
           </AccordionDetails>
         </Accordion>

@@ -67,7 +67,7 @@ const CurrencyItem = ({ name }) => {
   }
 
   return (
-    <TableContainer sx={{ backgroundColor: 'custom.bgSecond', }}  component={Paper}> 
+    <TableContainer sx={{ backgroundColor: 'custom.foreground'}}  component={Paper}> 
       <Table sx={{ minWidth: 650,}} aria-label="simple table">
         <TableHead>
           <TableRow>

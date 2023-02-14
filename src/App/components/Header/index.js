@@ -14,7 +14,7 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 
 import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
+import SettingsIcon from '@mui/icons-material/Settings';
 
 import { useTranslation } from "react-i18next";
 
@@ -38,7 +38,7 @@ const Header = () => {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
+      <AppBar position="static" sx={{backgroundColor: 'custom.header', }} >
         <Toolbar>
           <IconButton
             size="large"
@@ -48,7 +48,7 @@ const Header = () => {
             sx={{ mr: 2 }}
             onClick={() => setShowMenu(true)}
           >
-            <MenuIcon />
+            <SettingsIcon />
           </IconButton>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             <h2>{t('Currency_list')}</h2>

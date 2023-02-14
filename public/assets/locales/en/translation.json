@@ -21,5 +21,14 @@
   "Invalid_value": "Invalid value",
   "Quantity": "Quantity",
   "Save_purchase": "Save purchase",
-  "Outcome": "Outcome"
+  "Outcome": "Outcome",
+
+  "Palette": "Palette",
+  "Background": "Background",
+  "Foreground": "Foreground",
+  "Header": "Header",
+  "Primary": "Primary color",
+  "Success": "Success",
+  "Error": "Error",
+  "Secondary": "Secondary color"
 }
