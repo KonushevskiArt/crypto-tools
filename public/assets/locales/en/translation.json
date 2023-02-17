@@ -30,5 +30,9 @@
   "Primary": "Primary color",
   "Success": "Success",
   "Error": "Error",
-  "Secondary": "Secondary color"
+  "Secondary": "Secondary color",
+
+  "DialogeTitle_remove_currency": "Are you sure you want to delete the currency?",
+  "Disagree": "Disagree",
+  "Agree": "Agree"
 }

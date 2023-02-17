@@ -93,7 +93,10 @@ const CurrencyNameEditor = ({ currencyName }) => {
   </>
   :
   <>
-    <Badge badgeContent={currencys[currencyName].length} color="secondary">
+    <Badge 
+      badgeContent={currencys[currencyName].length} 
+      color="secondary"
+    >
       <Typography 
         sx={{fontSize: '24px', fontWeight: '700', color: '#404040'}} 
       >

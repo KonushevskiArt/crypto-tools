@@ -15,6 +15,7 @@ import { useDispatch } from "react-redux";
 import { TableFooter } from '@mui/material';
 import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
+import { averagePrice, totalCosts, totalQuantity } from '../../Utils/calculations';
 
 import { useTranslation } from "react-i18next";
 
@@ -35,22 +36,6 @@ const CurrencyItem = ({ name }) => {
   const currencyData = useSelector((state) => {
     return state.currencies.currencies[name]
   });
-
-  const averagePrice = () => {
-    const sum = currencyData.reduce((acc, currency) => (acc + Number(currency.price)), 0);
-    return parseFloat((sum / currencyData.length).toFixed(4));
-  };
-
-  const totalQuantity = () => {
-    return currencyData.reduce((acc, currency) => (acc + Number(currency.quantity)), 0);
-  }
-
-  const totalCosts = () => {
-    const arrOfCosts = currencyData
-    .map((currency) => currency.price * currency.quantity)
-    .reduce((acc, cost) => (acc + cost), 0);
-    return parseFloat(arrOfCosts.toFixed(4));
-  }
 
   const handleRemovePurchase = (e, id) => {
     e.preventDefault();
@@ -84,10 +69,31 @@ const CurrencyItem = ({ name }) => {
                 key={id}
                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
               >
-                <TableCell component="th" scope="row">{new Date(date).toLocaleDateString('ru-RU')}</TableCell>
-                <TableCell align="center">{price}</TableCell>
-                <TableCell align="center">{quantity}</TableCell>
-                <TableCell align="center">{parseFloat((price * quantity).toFixed(4))}</TableCell>
+                <TableCell 
+                  component="th" 
+                  scope="row"
+                  sx={{fontSize: '1rem', fontWeight: '400', color: 'rgba(0, 0, 0, 0.9)'}}
+                >
+                  {new Date(date).toLocaleDateString('ru-RU')}
+                </TableCell>
+                <TableCell 
+                  align="center"
+                  sx={{fontSize: '1rem', fontWeight: '400', color: 'rgba(0, 0, 0, 0.9)'}}
+                >
+                  {price}
+                </TableCell>
+                <TableCell 
+                  align="center"
+                  sx={{fontSize: '1rem', fontWeight: '400', color: 'rgba(0, 0, 0, 0.9)'}}
+                >
+                  {quantity}
+                </TableCell>
+                <TableCell 
+                  align="center"
+                  sx={{fontSize: '1rem', fontWeight: '400', color: 'rgba(0, 0, 0, 0.9)'}}
+                >
+                  {parseFloat((price * quantity).toFixed(4))}
+                </TableCell>
                 
                 <TableCell align="center">
                   <Tooltip title="Delete">
@@ -113,15 +119,15 @@ const CurrencyItem = ({ name }) => {
             </TableCell>
             <TableCell 
               sx={{fontSize: '1rem', fontWeight: '700', textDecoration: 'underline', color: 'rgba(0, 0, 0, 0.9)'}} 
-              align="center">{averagePrice() || 0}
+              align="center">{averagePrice(currencyData) || 0}
             </TableCell>
             <TableCell 
               sx={{fontSize: '1rem', fontWeight: '700', textDecoration: 'underline', color: 'rgba(0, 0, 0, 0.9)'}} 
-              align="center">{totalQuantity() || 0}
+              align="center">{totalQuantity(currencyData) || 0}
             </TableCell>
             <TableCell 
               sx={{fontSize: '1rem', fontWeight: '700', textDecoration: 'underline', color: 'rgba(0, 0, 0, 0.9)'}} 
-              align="center">{totalCosts() || 0}
+              align="center">{totalCosts(currencyData) || 0}
             </TableCell>
           </TableRow>
         </TableFooter>

@@ -16,7 +16,7 @@
 
   "Date&Time_picker": "Дата и время" ,
   "Price": "Цена",
-  "Costs": "Расходы",
+  "Costs": "Сумма",
   "Date": "Дата",
   "Invalid_value": "Невалидное значение",
   "Quantity": "Количество",
@@ -30,6 +30,10 @@
   "Primary": "Основной цвет",
   "Success": "Успех",
   "Error": "Ошибка",
-  "Secondary": "Дополнительный цвет"
+  "Secondary": "Дополнительный цвет",
+
+  "DialogeTitle_remove_currency": "Вы уверены что хотите удалить валюту?",
+  "Disagree": "Отклонить",
+  "Agree": "Принять"
 
 }

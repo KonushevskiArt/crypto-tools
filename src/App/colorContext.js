@@ -2,13 +2,13 @@ import React from 'react';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 const defaultColors = {
-  primary: '#1976d2',
-  secondary: '#9c27b0',
+  primary: '#687f9c',
+  secondary: '#c091ca',
   error: '#d32f2f',
   success: '#2e7d32',
-  foreground: '#fcf2f2',
-  background: '#fff7f7',
-  header: '#1976d2'
+  foreground: '#fafafa',
+  background: '#caced3',
+  header: '#d3bbbb'
 } 
 
 const colorTheme = JSON.parse(localStorage.getItem('colorTheme')) || defaultColors;
@@ -41,8 +41,6 @@ const ColorThemeContext = ({children}) => {
       }
     },
   });
-
-  //why theis not rerender when i use setColors
 
   return (
     <ColorContext.Provider value={{ colors, setColors }}>
