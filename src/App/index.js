@@ -3,7 +3,6 @@ import ColorThemeContext from './colorContext';
 import Container from '@mui/material/Container';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import Header from './components/Header';
 import { Box } from '@mui/system';
 import AppRouter from './AppRouter';
 import { store } from './redux/store'
