@@ -1,0 +1,23 @@
+.list {
+  list-style-type: none;
+  display: flex;
+}
+
+.listEl {
+  margin-right: 20px;
+}
+
+.link {
+  font-size: 18px;
+  color: white;
+  text-decoration: none; 
+  transition: color 0.2s;
+}
+.link:hover {
+  color: rgb(181, 228, 247);
+}
+
+.active {
+  border-bottom: 1px solid;
+  color: rgb(211, 250, 253);
+}

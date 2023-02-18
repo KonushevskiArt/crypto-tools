@@ -34,6 +34,37 @@ export default function Menu({ isShowMenu, setShowMenu }) {
     }
   }
 
+  const paletteInfo = [
+    {
+      text: 'Background',
+      key: 'background'
+    },
+    {
+      text: 'Foreground',
+      key: 'foreground'
+    },
+    {
+      text: 'Header',
+      key: 'header'
+    },
+    {
+      text: 'Success',
+      key: 'success'
+    },
+    {
+      text: 'Error',
+      key: 'error'
+    },
+    {
+      text: 'Primary',
+      key: 'primary'
+    },
+    {
+      text: 'Secondary',
+      key: 'secondary'
+    }
+  ]
+
   const list = () => (
     <Box
       sx={{ minWidth: 300 }}
@@ -45,82 +76,21 @@ export default function Menu({ isShowMenu, setShowMenu }) {
             {t('Palette')}
           </Typography>;
         </ListItem>
-        <ListItem  disablePadding>
-          <ListItemButton>
-            <ListItemText primary={t('Background')} />
-            <input 
-              onChange={(evt) => changeColorValue(evt, 'background') } 
-              defaultValue={colors.background}
-              type="color">
-            </input>
-          </ListItemButton>
-        </ListItem>
-        <Divider />
-        <ListItem  disablePadding>
-          <ListItemButton>
-            <ListItemText primary={t('Foreground')} />
-            <input 
-              onChange={(evt) => changeColorValue(evt, 'foreground') } 
-              defaultValue={colors.foreground}
-              type="color">
-            </input>
-          </ListItemButton>
-        </ListItem>
-        <Divider />
-        <ListItem  disablePadding>
-          <ListItemButton>
-          <ListItemText primary={t('Header')} />
-          <input 
-              onChange={(evt) => changeColorValue(evt, 'header') } 
-              defaultValue={colors.header}
-              type="color">
-            </input>
-          </ListItemButton>
-        </ListItem>
-        <Divider />
-        <ListItem  disablePadding>
-          <ListItemButton>
-            <ListItemText primary={t('Error')} />
-            <input 
-              onChange={(evt) => changeColorValue(evt, 'error') } 
-              defaultValue={colors.error}
-              type="color">
-            </input>
-          </ListItemButton>
-        </ListItem>
-        <Divider />
-        <ListItem  disablePadding>
-          <ListItemButton>
-            <ListItemText primary={t('Success')} />
-            <input 
-              onChange={(evt) => changeColorValue(evt, 'success') } 
-              defaultValue={colors.error}
-              type="color">
-            </input>
-          </ListItemButton>
-        </ListItem>
-        <Divider />
-        <ListItem  disablePadding>
-          <ListItemButton>
-            <ListItemText primary={t('Primary')} />
-            <input 
-              onChange={(evt) => changeColorValue(evt, 'primary') } 
-              defaultValue={colors.primary}
-              type="color">
-            </input>
-          </ListItemButton>
-        </ListItem>
-        <Divider />
-        <ListItem  disablePadding>
-          <ListItemButton>
-            <ListItemText primary={t('Secondary')} />
-            <input 
-              onChange={(evt) => changeColorValue(evt, 'secondary') } 
-              defaultValue={colors.secondary}
-              type="color">
-            </input>
-          </ListItemButton>
-        </ListItem>
+        {paletteInfo.map(({ text, key }) => 
+          <>
+            <ListItem  disablePadding>
+            <ListItemButton>
+              <ListItemText primary={t(text)} />
+              <input 
+                onChange={(evt) => changeColorValue(evt, key) } 
+                defaultValue={colors[key]}
+                type="color">
+              </input>
+            </ListItemButton>
+          </ListItem>
+          <Divider />
+          </>
+        )}
       </List>
     </Box>
   );

@@ -34,6 +34,11 @@
 
   "DialogeTitle_remove_currency": "Вы уверены что хотите удалить валюту?",
   "Disagree": "Отклонить",
-  "Agree": "Принять"
+  "Agree": "Принять",
 
-}
+  "CreditLeverage": "Кредитное плечо",
+  "Amount": "Сумма",
+  "EntryPrice": "Цена входа",
+  "ClosingPrice": "Цена закрытия",
+  "Calculate": "Высчитать"
+} 

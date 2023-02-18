@@ -1,43 +1,55 @@
-import * as React from 'react';
-import Box from '@mui/material/Box';
-import TextField from '@mui/material/TextField';
-import Button from '@mui/material/Button';
+import * as React from "react";
+import Box from "@mui/material/Box";
+import TextField from "@mui/material/TextField";
+import Button from "@mui/material/Button";
 import { useDispatch } from "react-redux";
-import { addPurchase } from "../../currencySlice";
-import { useForm} from "react-hook-form";
-import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
-import dayjs from 'dayjs';
+import { addPurchase } from "../../redux/currencySlice";
+import { useForm } from "react-hook-form";
+import { DesktopDatePicker } from "@mui/x-date-pickers/DesktopDatePicker";
+import dayjs from "dayjs";
 import { useTranslation } from "react-i18next";
 
 const PurchaseCreater = ({ name }) => {
   const { t } = useTranslation();
 
-  const { register, reset, handleSubmit, formState: { errors } } = useForm();
+  const {
+    register,
+    reset,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
-  const [dateValue, setDateValue] = React.useState(dayjs((Date.now())));
+  const [dateValue, setDateValue] = React.useState(dayjs(Date.now()));
 
   const handleChange = (newValue) => {
-    const formatedDate = (Date.parse(new Date(newValue.$d)));
+    const formatedDate = Date.parse(new Date(newValue.$d));
     setDateValue(formatedDate);
   };
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const onSubmit = ({ price, quantity }) => {
-    dispatch(addPurchase({name, price, quantity, date: Date.parse(new Date(dateValue))}));
+    dispatch(
+      addPurchase({
+        name,
+        price,
+        quantity,
+        date: Date.parse(new Date(dateValue)),
+      })
+    );
     reset();
   };
-  
+
   const numberValidationExp = /^[0-9]*[.]?[0-9]+$/;
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} >
+    <form onSubmit={handleSubmit(onSubmit)}>
       <Box
-        p='20px'
+        p="20px"
         sx={{
-          display: 'flex',
-          alignItems: 'center',
-          flexWrap: 'wrap',
+          display: "flex",
+          alignItems: "center",
+          flexWrap: "wrap",
         }}
       >
         <DesktopDatePicker
@@ -46,9 +58,9 @@ const PurchaseCreater = ({ name }) => {
           value={dateValue}
           onChange={handleChange}
           renderInput={(params) => (
-            <TextField 
+            <TextField
               size="small"
-              sx={{ marginRight: '20px' }}
+              sx={{ marginRight: "20px" }}
               {...params}
               {...register("date", {
                 required: t("Required_field"),
@@ -56,54 +68,53 @@ const PurchaseCreater = ({ name }) => {
             />
           )}
         />
-        <TextField 
-          id="standard-basic" 
-          label={t("Price")} 
-          variant="standard" 
-          sx={{ marginRight: '20px' }}
+        <TextField
+          id="standard-basic"
+          label={t("Price")}
+          variant="standard"
+          sx={{ marginRight: "20px" }}
           {...register("price", {
             required: t("Required_field"),
             min: 0.000000000001,
             pattern: {
               value: numberValidationExp,
-              message: t('Invalid_value')
-            }
+              message: t("Invalid_value"),
+            },
           })}
           error={!!errors?.price}
           helperText={errors?.price ? errors.price.message : null}
         />
-        <TextField 
+        <TextField
           sx={{
-            marginRight: '20px'
+            marginRight: "20px",
           }}
-          id="standard-basic" 
-          label={t("Quantity")} 
-          variant="standard" 
+          id="standard-basic"
+          label={t("Quantity")}
+          variant="standard"
           {...register("quantity", {
             required: t("Required_field"),
             min: 0.000000000001,
             pattern: {
               value: numberValidationExp,
-              message: t('Invalid_value')
-            }
+              message: t("Invalid_value"),
+            },
           })}
           error={!!errors?.quantity}
           helperText={errors?.quantity ? errors.quantity.message : null}
         />
-        <Button 
-          size="small" 
-          color="success" 
-          type='submit'
+        <Button
+          size="small"
+          color="success"
+          type="submit"
           variant="contained"
           sx={{
-            margin: '10px'
+            margin: "10px",
           }}
         >
-          {t('Save_purchase')}
+          {t("Save_purchase")}
         </Button>
       </Box>
     </form>
-    
   );
 };
 

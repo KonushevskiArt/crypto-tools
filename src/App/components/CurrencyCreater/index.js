@@ -2,36 +2,41 @@ import * as React from "react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import { useDispatch } from "react-redux";
-import { addCurrency } from "../../currencySlice";
-import { useForm} from "react-hook-form";
+import { addCurrency } from "../../redux/currencySlice";
+import { useForm } from "react-hook-form";
 import { TextField } from "@mui/material";
-import { useSelector } from 'react-redux';
+import { useSelector } from "react-redux";
 
 import { useTranslation } from "react-i18next";
 
 const CurrencyCreater = () => {
   const { t } = useTranslation();
-  const { register, reset, handleSubmit, formState: { errors } } = useForm();
+  const {
+    register,
+    reset,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
   const [additionalError, setEdditionalError] = React.useState(false);
   const [additionalMessage, setEdditionalMessage] = React.useState(null);
 
   const currencys = useSelector((state) => {
-    return state.currencies.currencies
+    return state.currencies.currencies;
   });
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const handleChange = () => {
-    setEdditionalError(false)
-    setEdditionalMessage(null)
-  }
+    setEdditionalError(false);
+    setEdditionalMessage(null);
+  };
 
   const onSubmit = ({ name }) => {
     if (currencys[name]) {
-      setEdditionalError(true)
-      setEdditionalMessage(t('Validation_message_currencyExisted'))
+      setEdditionalError(true);
+      setEdditionalMessage(t("Validation_message_currencyExisted"));
     } else {
-      dispatch(addCurrency({name}));
+      dispatch(addCurrency({ name }));
       reset();
     }
   };
@@ -43,30 +48,38 @@ const CurrencyCreater = () => {
         sx={{
           p: "20px",
           display: "flex",
-          alignItems: 'center'
+          alignItems: "center",
         }}
       >
-        <TextField   
-          id="standard-basic" 
-          label={t("Label_name")} 
-          variant="standard" 
-          {...register("name", {required: t("Required_field"), maxLength: 20})}
+        <TextField
+          id="standard-basic"
+          label={t("Label_name")}
+          variant="standard"
+          {...register("name", {
+            required: t("Required_field"),
+            maxLength: 20,
+          })}
           onChange={handleChange}
           error={!!errors?.name || additionalError}
-          helperText={errors?.name ? errors.name.message : additionalError ? additionalMessage : null}
+          helperText={
+            errors?.name
+              ? errors.name.message
+              : additionalError
+              ? additionalMessage
+              : null
+          }
         />
-        <Button 
-          size="small" 
-          type="submit" 
-          variant="contained" 
+        <Button
+          size="small"
+          type="submit"
+          variant="contained"
           color="success"
-          sx={{ marginLeft: "20px"}} 
+          sx={{ marginLeft: "20px" }}
         >
           {t("Add_currency")}
         </Button>
       </Box>
     </form>
-
   );
 };
 

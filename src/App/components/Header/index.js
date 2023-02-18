@@ -11,7 +11,6 @@ import Select from '@mui/material/Select';
 
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
 
 import IconButton from '@mui/material/IconButton';
 import SettingsIcon from '@mui/icons-material/Settings';
@@ -19,6 +18,7 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import { useTranslation } from "react-i18next";
 
 import Menu from '../Menu';
+import AppNavigation from './AppNavigation';
 
 
 const Header = () => {
@@ -38,8 +38,8 @@ const Header = () => {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static" sx={{backgroundColor: 'custom.header', }} >
-        <Toolbar>
+      <AppBar position="static" sx={{backgroundColor: 'custom.header', paddingBottom: '5px', paddingTop: '5px'}} >
+        <Toolbar >
           <IconButton
             size="large"
             edge="start"
@@ -50,10 +50,10 @@ const Header = () => {
           >
             <SettingsIcon />
           </IconButton>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            <h2>{t('Currency_list')}</h2>
-          </Typography>
-          <Box sx={{ minWidth: 120, position: 'absolute', top: '20px', right: '20px', color: 'inherit', border: 'inherit' }}>
+
+          <AppNavigation />
+
+          <Box sx={{ minWidth: 120, position: 'absolute', top: '12px', right: '20px', color: 'inherit', border: 'inherit' }}>
             <FormControl fullWidth>
               <InputLabel sx={{color: 'inherit'}} id="demo-simple-select-label">{t("Language")}</InputLabel>
               <Select

@@ -34,5 +34,11 @@
 
   "DialogeTitle_remove_currency": "Are you sure you want to delete the currency?",
   "Disagree": "Disagree",
-  "Agree": "Agree"
+  "Agree": "Agree",
+
+  "CreditLeverage": "Credit leverage",
+  "Amount": "The amount",
+  "EntryPrice": "Entry price",
+  "ClosingPrice": "Closing price",
+  "Calculate": "Calculate"
 }
