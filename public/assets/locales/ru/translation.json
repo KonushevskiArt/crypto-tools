@@ -38,7 +38,9 @@
 
   "CreditLeverage": "Кредитное плечо",
   "Amount": "Сумма",
-  "EntryPrice": "Цена входа",
+  "EntryPrice": "Цена открытия",
   "ClosingPrice": "Цена закрытия",
-  "Calculate": "Высчитать"
+  "Calculate": "Высчитать",
+
+  "Reset": "Сбросить"
 } 

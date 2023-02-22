@@ -37,8 +37,10 @@
   "Agree": "Agree",
 
   "CreditLeverage": "Credit leverage",
-  "Amount": "The amount",
+  "Amount": "The amount", 
   "EntryPrice": "Entry price",
   "ClosingPrice": "Closing price",
-  "Calculate": "Calculate"
+  "Calculate": "Calculate",
+
+  "Reset": "Reset"
 }

@@ -77,19 +77,19 @@ export default function Menu({ isShowMenu, setShowMenu }) {
           </Typography>;
         </ListItem>
         {paletteInfo.map(({ text, key }) => 
-          <>
+          <div key={key}>
             <ListItem  disablePadding>
-            <ListItemButton>
-              <ListItemText primary={t(text)} />
-              <input 
-                onChange={(evt) => changeColorValue(evt, key) } 
-                defaultValue={colors[key]}
-                type="color">
-              </input>
-            </ListItemButton>
-          </ListItem>
-          <Divider />
-          </>
+              <ListItemButton>
+                <ListItemText primary={t(text)} />
+                <input 
+                  onChange={(evt) => changeColorValue(evt, key) } 
+                  defaultValue={colors[key]}
+                  type="color">
+                </input>
+              </ListItemButton>
+            </ListItem>
+            <Divider />
+          </div>
         )}
       </List>
     </Box>
