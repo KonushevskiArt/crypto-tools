@@ -24,17 +24,22 @@ const CommissionCalculatorPage = () => {
 
   const onSubmit = ({ creditLeverage, amount, entryPrice, closingPrice }) => {
 
-    const currentQuantity = parseFloat(((amount * creditLeverage) / entryPrice).toFixed());
-    const currentProfitAndLoss = parseFloat(currentQuantity * (closingPrice - entryPrice).toFixed());
-    const currentProfitAndLossPercentages = parseFloat(currentProfitAndLoss / (amount / 100)).toFixed();
-    const currentInitialMargin = parseFloat((currentQuantity * entryPrice) / creditLeverage).toFixed();
+    const currentQuantity = (((amount * creditLeverage) / entryPrice));
+    const currentProfitAndLoss = (currentQuantity * (closingPrice - entryPrice));
+    const currentProfitAndLossPercentages = (currentProfitAndLoss / (amount / 100));
+    const currentInitialMargin = ((currentQuantity * entryPrice) / creditLeverage);
+    const currentROI = currentProfitAndLoss * creditLeverage;
 
-    setQuantity(currentQuantity);
-    setInitialMargin(currentInitialMargin);
-    setProfitAndLoss(currentProfitAndLoss);
-    setProfitAndLossPercentages(currentProfitAndLossPercentages);
-    setROI(0);
+    setQuantity(Number.parseFloat(currentQuantity).toFixed(6));
+    setInitialMargin(Number.parseFloat(currentInitialMargin).toFixed(6));
+    setProfitAndLoss(Number.parseFloat(currentProfitAndLoss).toFixed(6));
+    setProfitAndLossPercentages(Number.parseFloat(currentProfitAndLossPercentages).toFixed(6));
+    setROI(Number.parseFloat(currentROI).toFixed(6));
   };
+
+  const removeZeros = (number) => {
+    return Number(String(number).replace(/0*$/, ""));
+  } 
 
   const handleReset = () => {
     reset();
@@ -159,25 +164,25 @@ const CommissionCalculatorPage = () => {
             sx={{ padding: '12px', borderRadius: '5px', width: '100%'}}
             paragraph={true}
           >
-            Начальная маржа: {initialMargin}
+            Начальная маржа: {removeZeros(initialMargin)}
           </Typography>
           <Typography 
             sx={{ padding: '12px', borderRadius: '5px', width: '100%'}}
             paragraph={true}
           >
-            Прибыль / убыток: {profitAndLoss}
+            Прибыль / убыток: {removeZeros(profitAndLoss)}
           </Typography>
           <Typography
             sx={{ padding: '12px', borderRadius: '5px', width: '100%'}}
             paragraph={true}
           >
-            Прибыль / убыток(%): {profitAndLossPercentages}
+            Прибыль / убыток(%): {removeZeros(profitAndLossPercentages)}
           </Typography>
           <Typography
             sx={{ padding: '12px', borderRadius: '5px', width: '100%'}} 
             paragraph={true}
           >
-            ROI: {ROI}
+            ROI: {removeZeros(ROI)}
           </Typography>
           
         </Box>
