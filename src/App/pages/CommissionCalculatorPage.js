@@ -26,7 +26,7 @@ const CommissionCalculatorPage = () => {
 
     const currentQuantity = (((amount * creditLeverage) / entryPrice));
     const currentInitialMargin = (amount / creditLeverage);
-    const currentProfitAndLoss = (currentQuantity * (closingPrice - entryPrice));
+    const currentProfitAndLoss = ((amount / entryPrice) * (closingPrice - entryPrice));
     const currentProfitAndLossPercentages = (currentProfitAndLoss / (amount / 100)) / creditLeverage;
     const currentROI = currentProfitAndLoss * creditLeverage;
 
@@ -116,20 +116,10 @@ const CommissionCalculatorPage = () => {
             <TextField
               id="standard-basic"
               label={t("Quantity")}
-              value={quantity}
+              value={removeZeros(quantity)}
               variant="outlined"
               disabled
               sx={{ marginBottom: "20px" }}
-              // {...register("quantity", {
-              //   required: t("Required_field"),
-              //   min: 0.000000000001,
-              //   pattern: {
-              //     value: numberValidationExp,
-              //     message: t("Invalid_value"),
-              //   },
-              // })}
-              // error={!!errors?.quantity}
-              // helperText={errors?.quantity ? errors.quantity.message : null}
             />
             <Box>
               <Button
@@ -164,25 +154,25 @@ const CommissionCalculatorPage = () => {
             sx={{ padding: '12px', borderRadius: '5px', width: '100%'}}
             paragraph={true}
           >
-            Начальная маржа: {removeZeros(initialMargin)}
+            {t("InitialMargin")}: {removeZeros(initialMargin)} USDT
           </Typography>
           <Typography 
             sx={{ padding: '12px', borderRadius: '5px', width: '100%'}}
             paragraph={true}
           >
-            Прибыль / убыток: {removeZeros(profitAndLoss)}
+            {t("ProfitAndLoss")}: {removeZeros(profitAndLoss)}
           </Typography>
           <Typography
             sx={{ padding: '12px', borderRadius: '5px', width: '100%'}}
             paragraph={true}
           >
-            Прибыль / убыток(%): {removeZeros(profitAndLossPercentages)}
+            {t("ProfitAndLoss")}: {removeZeros(profitAndLossPercentages)}%
           </Typography>
           <Typography
             sx={{ padding: '12px', borderRadius: '5px', width: '100%'}} 
             paragraph={true}
           >
-            ROI: {removeZeros(ROI)}
+            ROI: {removeZeros(ROI)}%
           </Typography>
           
         </Box>

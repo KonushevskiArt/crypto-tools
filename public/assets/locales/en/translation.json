@@ -42,5 +42,7 @@
   "ClosingPrice": "Closing price",
   "Calculate": "Calculate",
 
-  "Reset": "Reset"
+  "Reset": "Reset",
+  "InitialMargin": "Initial margin",
+  "ProfitAndLoss": "Profit / loss"
 }

@@ -42,5 +42,7 @@
   "ClosingPrice": "Цена закрытия",
   "Calculate": "Высчитать",
 
-  "Reset": "Сбросить"
+  "Reset": "Сбросить",
+  "InitialMargin": "Начальная маржа",
+  "ProfitAndLoss": "Прибыль / убыток"
 } 
