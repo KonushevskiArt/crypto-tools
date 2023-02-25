@@ -25,13 +25,14 @@ const CommissionCalculatorPage = () => {
   const onSubmit = ({ creditLeverage, amount, entryPrice, closingPrice }) => {
 
     const currentQuantity = (((amount * creditLeverage) / entryPrice));
-    const currentInitialMargin = (amount / creditLeverage);
-    const currentProfitAndLoss = ((amount / entryPrice) * (closingPrice - entryPrice));
-    const currentProfitAndLossPercentages = (currentProfitAndLoss / (amount / 100)) / creditLeverage;
+    // const currentInitialMargin = (amount / creditLeverage);
+    const currentProfitAndLoss = (currentQuantity * (closingPrice - entryPrice));
+    const currentProfitAndLossPercentages = (currentProfitAndLoss / (amount / 100));
     const currentROI = currentProfitAndLoss * creditLeverage;
 
     setQuantity(Number.parseFloat(currentQuantity).toFixed(6));
-    setInitialMargin(Number.parseFloat(currentInitialMargin).toFixed(6));
+    // setInitialMargin(Number.parseFloat(currentInitialMargin).toFixed(6));
+     setInitialMargin(Number.parseFloat(amount).toFixed(6));
     setProfitAndLoss(Number.parseFloat(currentProfitAndLoss).toFixed(6));
     setProfitAndLossPercentages(Number.parseFloat(currentProfitAndLossPercentages).toFixed(6));
     setROI(Number.parseFloat(currentROI).toFixed(6));
