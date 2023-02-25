@@ -27,7 +27,11 @@ const CommissionCalculatorPage = () => {
     const currentQuantity = (((amount * creditLeverage) / entryPrice));
     // const currentInitialMargin = (amount / creditLeverage);
     const currentProfitAndLoss = (currentQuantity * (closingPrice - entryPrice));
-    const currentProfitAndLossPercentages = (currentProfitAndLoss / (amount / 100));
+
+    const currentProfitAndLossPercentages =  entryPrice > closingPrice ?
+      (entryPrice - closingPrice) / entryPrice * 100 :
+      (closingPrice - entryPrice) / entryPrice * 100 ;
+      
     const currentROI = currentProfitAndLoss * creditLeverage;
 
     setQuantity(Number.parseFloat(currentQuantity).toFixed(6));
@@ -161,7 +165,7 @@ const CommissionCalculatorPage = () => {
             sx={{ padding: '12px', borderRadius: '5px', width: '100%'}}
             paragraph={true}
           >
-            {t("ProfitAndLoss")}: {removeZeros(profitAndLoss)}
+            {t("ProfitAndLoss")}: {removeZeros(profitAndLoss)} USDT
           </Typography>
           <Typography
             sx={{ padding: '12px', borderRadius: '5px', width: '100%'}}
