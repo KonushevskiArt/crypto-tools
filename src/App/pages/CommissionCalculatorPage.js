@@ -29,8 +29,8 @@ const CommissionCalculatorPage = () => {
     const currentProfitAndLoss = (currentQuantity * (closingPrice - entryPrice));
 
     const currentProfitAndLossPercentages =  entryPrice > closingPrice ?
-      (entryPrice - closingPrice) / entryPrice * 100 :
-      ((closingPrice - entryPrice) / entryPrice * 100) * -1 ;
+      ((entryPrice - closingPrice) / entryPrice * 100) * -1 :
+      ((closingPrice - entryPrice) / entryPrice * 100) ;
 
     const currentROI = currentProfitAndLossPercentages * creditLeverage;
 
@@ -38,8 +38,8 @@ const CommissionCalculatorPage = () => {
     // setInitialMargin(Number.parseFloat(currentInitialMargin).toFixed(6));
      setInitialMargin(Number.parseFloat(amount).toFixed(6));
     setProfitAndLoss(Number.parseFloat(currentProfitAndLoss).toFixed(6));
-    setProfitAndLossPercentages(Number.parseFloat(currentProfitAndLossPercentages).toFixed(6));
-    setROI(Number.parseFloat(currentROI).toFixed(6));
+    setProfitAndLossPercentages(Number.parseFloat(currentProfitAndLossPercentages).toFixed(2));
+    setROI(Number.parseFloat(currentROI).toFixed(2));
   };
 
   const removeZeros = (number) => {
