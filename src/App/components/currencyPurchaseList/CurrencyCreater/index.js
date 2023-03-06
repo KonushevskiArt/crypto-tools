@@ -2,10 +2,11 @@ import * as React from "react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import { useDispatch } from "react-redux";
-import { addCurrency } from "../../redux/currencySlice";
+import { addCurrency } from "../../../redux/currencySlice";
 import { useForm } from "react-hook-form";
 import { TextField } from "@mui/material";
 import { useSelector } from "react-redux";
+import DataSaverOnIcon from '@mui/icons-material/DataSaverOn';
 
 import { useTranslation } from "react-i18next";
 
@@ -75,6 +76,7 @@ const CurrencyCreater = () => {
           variant="contained"
           color="success"
           sx={{ marginLeft: "20px" }}
+          startIcon={<DataSaverOnIcon />}
         >
           {t("Add_currency")}
         </Button>

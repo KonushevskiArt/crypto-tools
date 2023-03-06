@@ -3,11 +3,12 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
-import { editCurrencyName } from "../../redux/currencySlice";
+import { editCurrencyName } from "../../../redux/currencySlice";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
-
+import EditIcon from '@mui/icons-material/Edit';
 import Badge from "@mui/material/Badge";
+import SaveIcon from '@mui/icons-material/Save';
 
 import { useTranslation } from "react-i18next";
 
@@ -92,6 +93,7 @@ const CurrencyNameEditor = ({ currencyName }) => {
                 variant="outlined"
                 size="small"
                 onClick={handleSave}
+                startIcon={<SaveIcon />}
               >
                 {t("Save")}
               </Button>
@@ -117,6 +119,7 @@ const CurrencyNameEditor = ({ currencyName }) => {
             type="button"
             onClick={handleEdit}
             sx={{ marginLeft: "40px" }}
+            startIcon={<EditIcon />}
           >
             {t("Edit")}
           </Button>

@@ -10,7 +10,8 @@ import { styled } from "@mui/material/styles";
 import PurchaseCreater from "../PurchaseCreater";
 import { useSelector } from "react-redux";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { removePurchase } from "../../redux/currencySlice";
+import { removePurchase } from "../../../redux/currencySlice";
+// import { removePurchase } from ''
 import { useDispatch } from "react-redux";
 import { TableFooter } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
@@ -19,7 +20,7 @@ import {
   averagePrice,
   totalCosts,
   totalQuantity,
-} from "../../Utils/calculations";
+} from "../../../Utils/calculations";
 
 import { useTranslation } from "react-i18next";
 

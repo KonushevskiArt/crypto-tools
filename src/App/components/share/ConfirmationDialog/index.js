@@ -4,6 +4,8 @@ import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogTitle from '@mui/material/DialogTitle';
 import { useTranslation } from "react-i18next";
+import DoDisturbIcon from '@mui/icons-material/DoDisturb';
+import DoneIcon from '@mui/icons-material/Done';
 
 export default function AlertDialog({ isOpen, handleClose, handleAccept, title }) {
   const { t } = useTranslation();
@@ -19,8 +21,8 @@ export default function AlertDialog({ isOpen, handleClose, handleAccept, title }
         {title}
       </DialogTitle>
       <DialogActions>
-        <Button onClick={handleClose}>{t('Disagree')}</Button>
-        <Button onClick={handleAccept} autoFocus>
+        <Button startIcon={< DoDisturbIcon/>} onClick={handleClose}>{t('Disagree')}</Button>
+        <Button startIcon={< DoneIcon/>} onClick={handleAccept} autoFocus>
           {t('Agree')}
         </Button>
       </DialogActions>

@@ -1,6 +1,6 @@
 import React from 'react';
-import CurrencyList from '../components/CurrencyList';
-import CurrencyCreater from '../components/CurrencyCreater';
+import CurrencyList from '../components/currencyPurchaseList/CurrencyList';
+import CurrencyCreater from '../components/currencyPurchaseList/CurrencyCreater';
 
 const ListOfCurrenciesPage = () => {
   return (

@@ -3,32 +3,38 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
-import CommissionCalculator from './pages/CommissionCalculatorPage';
+import CalculatorsPage from './pages/CalculatorsPage';
 import ErrorPage from './pages/ErrorPage';
 import ListOfCurrenciesPage from './pages/ListOfCurrenciesPage';
 import Root from './components/Root';
+import Authorization from './pages/Authorization';
 
-export const routes = createBrowserRouter([
+export const router = createBrowserRouter([
   {
-    path: "/",
+    path: "/aa",
     element: <Root />,
     errorElement: <ErrorPage />,
     children: [
       {
-        path: "commission-calculator",
-        element: <CommissionCalculator />,
+        path: "calculators",
+        element: <CalculatorsPage />,
       },
       {
-        path: "list-of-currencies",
+        index: true,
         element: <ListOfCurrenciesPage />,
       },
     ],
   },
+  {
+    path: "/",
+    element: <Authorization />,
+    errorElement: <ErrorPage />,
+  }
 ]);
 
 const AppRouter = () => {
   return (
-    <RouterProvider router={routes} />
+    <RouterProvider router={router} />
   );
 };
 

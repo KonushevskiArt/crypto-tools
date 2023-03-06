@@ -5,7 +5,7 @@ import AccordionDetails from "@mui/material/AccordionDetails";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import CurrencyItem from "../CurrencyItem";
 import { useSelector } from "react-redux";
-import { removeCurrency, toggleAccardion } from "../../redux/currencySlice";
+import { removeCurrency, toggleAccardion } from "../../../redux/currencySlice";
 import { useDispatch } from "react-redux";
 import Box from "@mui/material/Box";
 import DeleteIcon from "@mui/icons-material/Delete";
@@ -15,13 +15,13 @@ import CurrencyNameEditor from "../CurrencyNameEditor";
 import { Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
 
-import AlertDialog from "../ConfirmationDialog";
+import AlertDialog from "../../share/ConfirmationDialog";
 
 import {
   averagePrice,
   totalCosts,
   totalQuantity,
-} from "../../Utils/calculations";
+} from "../../../Utils/calculations";
 
 const CurrencyList = () => {
   const { t } = useTranslation();

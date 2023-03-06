@@ -5,8 +5,10 @@ import Button from "@mui/material/Button";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { Typography } from '@mui/material';
+import FunctionsIcon from '@mui/icons-material/Functions';
+import RestartAltIcon from '@mui/icons-material/RestartAlt';
 
-const CommissionCalculatorPage = () => {
+const CommissionCalculator = () => {
   const { t } = useTranslation();
 
   const [quantity, setQuantity] = React.useState(0);
@@ -25,7 +27,6 @@ const CommissionCalculatorPage = () => {
   const onSubmit = ({ creditLeverage, amount, entryPrice, closingPrice }) => {
 
     const currentQuantity = (((amount * creditLeverage) / entryPrice));
-    // const currentInitialMargin = (amount / creditLeverage);
     const currentProfitAndLoss = (currentQuantity * (closingPrice - entryPrice));
 
     const currentProfitAndLossPercentages =  entryPrice > closingPrice ?
@@ -35,8 +36,7 @@ const CommissionCalculatorPage = () => {
     const currentROI = currentProfitAndLossPercentages * creditLeverage;
 
     setQuantity(Number.parseFloat(currentQuantity).toFixed(6));
-    // setInitialMargin(Number.parseFloat(currentInitialMargin).toFixed(6));
-     setInitialMargin(Number.parseFloat(amount).toFixed(6));
+    setInitialMargin(Number.parseFloat(amount).toFixed(6));
     setProfitAndLoss(Number.parseFloat(currentProfitAndLoss).toFixed(6));
     setProfitAndLossPercentages(Number.parseFloat(currentProfitAndLossPercentages).toFixed(2));
     setROI(Number.parseFloat(currentROI).toFixed(2));
@@ -72,20 +72,20 @@ const CommissionCalculatorPage = () => {
   ];
 
   return (
-    <Box 
+    <Box
       sx={{
         display: 'flex', 
-        justifyContent: 'center',
+        alignItems: 'center',
+        flexDirection: 'column',
+        backgroundColor: "custom.foreground",
+        width: '700px',
       }}
     >
-      <Box
-        sx={{
+      <Typography>Калькулятор комиссии</Typography>
+      <Box 
+          sx={{
           display: 'flex', 
           justifyContent: 'center',
-          backgroundColor: "custom.foreground",
-          width: '700px',
-          borderRadius: '10px', 
-          marginTop: '30px'
         }}
       >
         <form onSubmit={handleSubmit(onSubmit)}>
@@ -135,6 +135,7 @@ const CommissionCalculatorPage = () => {
                 sx={{
                   margin: "10px",
                 }}
+                startIcon={<FunctionsIcon/>}
               >
                 {t("Calculate")}
               </Button>
@@ -147,6 +148,7 @@ const CommissionCalculatorPage = () => {
                   margin: "10px",
                 }}
                 onClick={handleReset}
+                startIcon={<RestartAltIcon/>}
               >
                 {t("Reset")}
               </Button>
@@ -181,9 +183,10 @@ const CommissionCalculatorPage = () => {
           </Typography>
           
         </Box>
+
       </Box>
     </Box>
   );
 };
 
-export default CommissionCalculatorPage;
+export default CommissionCalculator;

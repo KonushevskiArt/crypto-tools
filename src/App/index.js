@@ -37,9 +37,9 @@ function App() {
       <ColorThemeContext> 
         <Box sx={{ minHeight: '100vh', backgroundColor: 'custom.background', textAlign: 'center' }}>
           <LocalizationProvider dateAdapter={AdapterDayjs}>
-              <Container maxWidth="lg">
+              {/* <Container maxWidth="lg"> */}
                 <AppRouter />
-              </Container>
+              {/* </Container> */}
           </LocalizationProvider>
         </Box>
       </ColorThemeContext>

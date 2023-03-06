@@ -1,5 +1,7 @@
 {
   "Currency_list": "Currency list",
+  "ComissionCalculator": "Commission calculator",
+  "InteresetCalculator": "Intereset сalculator",
 
   "Required_field": "Required field",
   "Validation_message_currencyExisted": "A currency with this name is already in the list",
@@ -8,7 +10,7 @@
   "Label_name": "Name",
   "Add_currency": "Add currency",
 
-  "Language": "Language",
+  "Language": "Language", 
   "Eng": "En",
   "Ru": "Ru",
   "Save": "Save",
