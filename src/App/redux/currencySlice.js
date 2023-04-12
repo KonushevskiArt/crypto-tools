@@ -18,6 +18,7 @@ export const currenciesSlice = createSlice({
   reducers: {
     addCurrency: (state, action) => {
       const { name } = action.payload;
+      console.log(name)
       state.currencies[name] = [];
       const newState = JSON.stringify({ ...state.currencies });
 

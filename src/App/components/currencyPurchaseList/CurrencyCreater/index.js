@@ -38,7 +38,7 @@ const CurrencyCreater = () => {
       setEdditionalError(true);
       setEdditionalMessage(t("Validation_message_currencyExisted"));
     } else {
-      dispatch(addCurrency({ trimmedName }));
+      dispatch(addCurrency({ name: trimmedName }));
       reset();
     }
   };
