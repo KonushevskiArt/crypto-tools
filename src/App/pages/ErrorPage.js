@@ -12,7 +12,9 @@ export default function ErrorPage() {
       <p>
         <i>{error.statusText || error.message}</i>
       </p>
-      <Link style={{ fontSize: '26px' }} to='/'>Go to home</Link>
+      <Link style={{ fontSize: "26px" }} to="/">
+        Go to home
+      </Link>
     </div>
   );
 }

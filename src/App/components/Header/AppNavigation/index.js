@@ -16,6 +16,10 @@ const AppNavigation = () => {
       to: `calculators`,
       text: t("ComissionCalculator"),
     },
+    {
+      to: `tables`,
+      text: "Tables Page",
+    },
   ];
 
   return (

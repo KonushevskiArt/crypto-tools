@@ -8,7 +8,7 @@ import { useForm } from "react-hook-form";
 import { DesktopDatePicker } from "@mui/x-date-pickers/DesktopDatePicker";
 import dayjs from "dayjs";
 import { useTranslation } from "react-i18next";
-import LibraryAddIcon from '@mui/icons-material/LibraryAdd';
+import LibraryAddIcon from "@mui/icons-material/LibraryAdd";
 
 const PurchaseCreater = ({ name }) => {
   const { t } = useTranslation();

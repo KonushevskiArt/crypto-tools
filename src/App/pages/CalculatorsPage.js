@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 import AppModal from "../components/share/Modal";
 import CommissionCalculator from "../components/Calculators/CommisionCalculator";
 import InterestCalculator from "../components/Calculators/InterestCalculator";
-import CalculateIcon from '@mui/icons-material/Calculate';
+import CalculateIcon from "@mui/icons-material/Calculate";
 
 const CalculatorsPage = () => {
   const { t } = useTranslation();
@@ -14,52 +14,51 @@ const CalculatorsPage = () => {
 
   const showCommisionCalculator = () => {
     setModalContent(<CommissionCalculator />);
-    setOpenModal(true)
-  }
+    setOpenModal(true);
+  };
 
   const showInterestCalculator = () => {
-    setModalContent(<InterestCalculator />)
-    setOpenModal(true)
-  }
+    setModalContent(<InterestCalculator />);
+    setOpenModal(true);
+  };
 
   return (
     <>
-      <Box 
+      <Box
         sx={{
-          display: 'flex', 
-          alignItems: 'center',
-          padding: '30px',
-          gap: '20px'
+          display: "flex",
+          alignItems: "center",
+          padding: "30px",
+          gap: "20px",
         }}
       >
         <Button
-            size="small"
-            color="success"
-            type="button"
-            variant="contained"
-            sx={{
-              margin: "10px",
-            }}
-            startIcon={<CalculateIcon/>}
-            onClick={showCommisionCalculator}
-          >
-            {t("ComissionCalculator")}
-          </Button>
+          size="small"
+          color="success"
+          type="button"
+          variant="contained"
+          sx={{
+            margin: "10px",
+          }}
+          startIcon={<CalculateIcon />}
+          onClick={showCommisionCalculator}
+        >
+          {t("ComissionCalculator")}
+        </Button>
 
-          <Button
-            size="small"
-            color="success"
-            type="button"
-            variant="contained"
-            sx={{
-              margin: "10px",
-            }}
-            startIcon={<CalculateIcon/>}
-            onClick={showInterestCalculator}
-          >
-            {t("InteresetCalculator")}
-          </Button>
-          
+        <Button
+          size="small"
+          color="success"
+          type="button"
+          variant="contained"
+          sx={{
+            margin: "10px",
+          }}
+          startIcon={<CalculateIcon />}
+          onClick={showInterestCalculator}
+        >
+          {t("InteresetCalculator")}
+        </Button>
       </Box>
       <AppModal open={openModal} setOpen={setOpenModal}>
         {modalContent}

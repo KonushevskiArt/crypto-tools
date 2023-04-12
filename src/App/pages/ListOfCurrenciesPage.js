@@ -1,8 +1,10 @@
-import React from 'react';
-import CurrencyList from '../components/currencyPurchaseList/CurrencyList';
-import CurrencyCreater from '../components/currencyPurchaseList/CurrencyCreater';
+/* eslint-env browser */
+import React from "react";
+import CurrencyList from "../components/CurrencyPurchaseList/CurrencyList";
+import CurrencyCreater from "../components/CurrencyPurchaseList/CurrencyCreater";
 
 const ListOfCurrenciesPage = () => {
+
   return (
     <>
       <CurrencyList />

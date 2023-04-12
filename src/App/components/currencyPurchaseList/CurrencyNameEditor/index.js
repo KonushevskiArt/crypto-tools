@@ -6,9 +6,9 @@ import Box from "@mui/material/Box";
 import { editCurrencyName } from "../../../redux/currencySlice";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
-import EditIcon from '@mui/icons-material/Edit';
+import EditIcon from "@mui/icons-material/Edit";
 import Badge from "@mui/material/Badge";
-import SaveIcon from '@mui/icons-material/Save';
+import SaveIcon from "@mui/icons-material/Save";
 
 import { useTranslation } from "react-i18next";
 

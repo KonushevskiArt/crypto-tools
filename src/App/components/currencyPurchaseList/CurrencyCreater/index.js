@@ -6,7 +6,7 @@ import { addCurrency } from "../../../redux/currencySlice";
 import { useForm } from "react-hook-form";
 import { TextField } from "@mui/material";
 import { useSelector } from "react-redux";
-import DataSaverOnIcon from '@mui/icons-material/DataSaverOn';
+import DataSaverOnIcon from "@mui/icons-material/DataSaverOn";
 
 import { useTranslation } from "react-i18next";
 
@@ -33,11 +33,12 @@ const CurrencyCreater = () => {
   };
 
   const onSubmit = ({ name }) => {
-    if (currencys[name]) {
+    const trimmedName = name.trim();
+    if (currencys[trimmedName]) {
       setEdditionalError(true);
       setEdditionalMessage(t("Validation_message_currencyExisted"));
     } else {
-      dispatch(addCurrency({ name }));
+      dispatch(addCurrency({ trimmedName }));
       reset();
     }
   };
@@ -58,7 +59,7 @@ const CurrencyCreater = () => {
           variant="standard"
           {...register("name", {
             required: t("Required_field"),
-            maxLength: 20,
+            maxLength: { value: 20, message: "max length 20 characters" },
           })}
           onChange={handleChange}
           error={!!errors?.name || additionalError}
