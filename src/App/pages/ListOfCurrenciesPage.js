@@ -1,13 +1,13 @@
 /* eslint-env browser */
 import React from "react";
-import CurrencyList from "../components/CurrencyPurchaseList/CurrencyList";
+// import CurrencyList from "../components/CurrencyPurchaseList/CurrencyList";
 import CurrencyCreater from "../components/CurrencyPurchaseList/CurrencyCreater";
 
 const ListOfCurrenciesPage = () => {
 
   return (
     <>
-      <CurrencyList />
+      {/* <CurrencyList /> */}
       <CurrencyCreater />
     </>
   );
